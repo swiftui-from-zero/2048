@@ -5,7 +5,7 @@
 <p align="center">
     <img src="img/ios_preview.gif" width="200px" />
     <span>   </span>
-    <img src="img/macOS_preview.gif" width="400px" />
+    <img src="img/macos_preview.gif" width="400px" />
 </p>
 
 
