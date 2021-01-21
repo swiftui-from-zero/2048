@@ -26,8 +26,8 @@ enum Direction {
         switch self {
             case .left: return 0
             case .right: return 0
-            case .up: return 1
-            case .down: return -1
+            case .up: return -1
+            case .down: return 1
         }
     }
 }
@@ -52,8 +52,6 @@ struct Block: Identifiable {
 
 class Model: ObservableObject {
     @Published var blocks: [Block]
-    // won when user made to 2048
-    @Published var won: Bool = false
     // game over when there is no empty block
     @Published var end: Bool = false
     @Published var score: Int = 0
@@ -106,14 +104,13 @@ class Model: ObservableObject {
     }
 
     func slide(to direction: Direction) {
-        guard !won else {
+        guard !sliding else {
             return
         }
-
         // sort blocks to make sure
         //      | |2|2|2| --right--> | | |2|4| not | | |4|2|
         blocks.sort {
-            ($0.x - $1.x) * direction.dx > 0 || ($0.y - $1.y) * direction.dy > 0
+            ($0.x - $1.x) * direction.dx > 0 || ($0.y - $1.y) * direction.dy < 0
         }
         
         var everMoved: Bool = false

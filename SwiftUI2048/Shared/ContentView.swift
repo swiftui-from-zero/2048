@@ -19,6 +19,7 @@ struct ContentView: View {
                     .font(.system(size: 50))
                     .fontWeight(.heavy)
                     .foregroundColor(textColor)
+                    .padding(.top)
                 GameBoard(model: model)
                     .padding()
             }
@@ -40,15 +41,15 @@ struct ContentView: View {
         var direction: Direction
         if abs(x) / abs(y) >= 1 {
             if x > 0 {
-                direction = Direction.right
+                direction = .right
             } else {
-                direction = Direction.left
+                direction = .left
             }
         } else {
             if y > 0 {
-                direction = Direction.up
+                direction = .down
             } else {
-                direction = Direction.down
+                direction = .up
             }
         }
         withAnimation {

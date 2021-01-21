@@ -41,9 +41,9 @@ struct BlankBlock: View {
 struct NumberBlock: View {
     var width: CGFloat
     var height: CGFloat
-    
+
     var val: Int
-    
+
     var body: some View {
         RoundedRectangle(cornerRadius: 3)
             .fill(colorPalette[val]!)
