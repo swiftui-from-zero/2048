@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    var model = Model()
+    
     var body: some View {
-        Text("Hello world!")
-            .padding()
+        ZStack {
+            backgroundColor
+                .ignoresSafeArea()
+            VStack {
+                Text("2048")
+                    .font(.system(size: 50))
+                    .fontWeight(.heavy)
+                    .foregroundColor(textColor)
+                    .padding(.top)
+                GameBoard(model: model)
+                    .padding()
+            }
+        }
     }
 }
 
