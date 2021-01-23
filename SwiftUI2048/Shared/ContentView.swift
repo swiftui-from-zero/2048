@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var model = Model()
+    @ObservedObject var model = Model()
     
     var body: some View {
         ZStack {
@@ -24,6 +24,34 @@ struct ContentView: View {
                     .padding()
             }
         }
+        .gesture(DragGesture()
+                    .onEnded(dragGesture))
+    }
+
+    func dragGesture(value: DragGesture.Value) {
+        let x = value.translation.width
+        let y = value.translation.height
+
+        let threshold: CGFloat = 20
+        guard abs(x) > threshold || abs(y) > threshold else {
+            return
+        }
+        
+        var direction: Direction
+        if abs(x) / abs(y) >= 1 {
+            if x > 0 {
+                direction = .right
+            } else {
+                direction = .left
+            }
+        } else {
+            if y > 0 {
+                direction = .down
+            } else {
+                direction = .up
+            }
+        }
+        model.slide(to: direction)
     }
 }
 

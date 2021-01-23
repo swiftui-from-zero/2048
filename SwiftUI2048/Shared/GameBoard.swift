@@ -41,7 +41,7 @@ struct NumberBlock: View {
 }
 
 struct GameBoard: View {
-    var model: Model
+    @ObservedObject var model: Model
 
     var body: some View {
         RoundedRectangle(cornerRadius: 5)
